@@ -56,8 +56,19 @@ class Quiz < Sinatra::Base
   end
 
   get '/submit' do
-    # Somehow save the answer in the session cookie
-    # And redirect to the next question if there are any left
-    # else redirect to finish overview
+    quiz_code = params['quiz']
+    quiz = Quizes::Quizes[quiz_code]
+    raise 'Quiz not found.' unless quiz
+    qno = params['question'].to_i
+    question = quiz[:questions][qno]
+    raise 'Question not found.' unless question
+
+    session["#{quiz_code}-#{qno}"] = params['answer']
+
+    if quiz[:questions][qno + 1]
+      redirect to("/question?quiz=#{quiz_code}&question=#{qno + 1}")
+    else
+      redirect to("/finish?quiz=#{quiz_code}")
+    end
   end
 end
