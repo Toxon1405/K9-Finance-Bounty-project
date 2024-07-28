@@ -1,0 +1,8 @@
+Welcome to the Quiz...
+This quiz has <%= quiz[:questions].length %> questions.
+
+<form action="/question" method="GET">
+<input type="hidden" name="quiz" value="<%= quiz_code %>">
+<input type="hidden" name="question" value="0">
+<input type="submit" value="Start">
+</form>

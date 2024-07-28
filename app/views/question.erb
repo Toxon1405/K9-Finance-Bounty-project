@@ -1,0 +1,19 @@
+
+<div id="question">
+    <form action="/submit" method="GET">
+    <label id="question_text" for="answer"><%= question[:text] %></label>
+
+    <% (question[:wrong_answers] + [question[:correct_answer]]).shuffle.each do |answer| %>
+    <% answer_hash = Zlib::crc32(answer) %>
+    <div class="answer">
+    <input type="radio" id="answer<%= answer_hash %>" name="answer" value="answer<%= answer_hash %>">
+    <label for="answer<%= answer_hash %>"><%= answer %></label><br>
+    </div>
+    <% end %>
+
+    <input type="hidden" name="quiz" value="<%= quiz_code %>">
+    <input type="hidden" name="question" value="<%= qno %>">
+
+    <input type="submit" value="Submit" id="question_submit">
+    </form>
+</div>
