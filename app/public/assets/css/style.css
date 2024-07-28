@@ -1,0 +1,66 @@
+body {
+    /* Make the viewing area larger so that
+       more data can be displayed at once */
+    grid-template-columns: 1fr 90% 1fr;
+}
+
+main {
+    /* Center elements */
+    margin: auto;
+}
+
+.mass_list {
+    padding: 10px;
+}
+
+.mass_list td {
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.mass_list a, .no_underline {
+    text-decoration: none;
+}
+
+ol.mass_list, ul.mass_list {
+    margin: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 45px;
+}
+
+.legend {
+    margin-top: 30px;
+    font-size: 0.8em;
+    max-width: 70%;
+}
+
+@media screen and (min-width: 720px) {
+    /*
+        Create a pseude table so that no real table has
+        to be used and it is more readable for screen readers.
+    */
+    div.table {
+        display: table;
+    }
+
+    div.tr {
+        display: table-row;
+    }
+
+    div.td {
+        display: table-cell;
+    }
+
+    div.td {
+        line-height: normal;
+        padding: 5px;
+    }
+
+    .main_search_form {
+        width: 600px;
+        margin-left: 200px;
+    }
+}
