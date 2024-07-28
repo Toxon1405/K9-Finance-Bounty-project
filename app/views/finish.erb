@@ -1,0 +1,26 @@
+
+<div id="finish_overview">
+<% quiz[:questions].each.with_index do |question, index| %>
+Question #<%= index + 1 %>:<br>
+Correct answer: <%= question[:correct_answer] %><br>
+<% is_correct_answer = (Zlib::crc32(question[:correct_answer]).to_s == session["#{quiz_code}-#{index}"]) %>
+<% if is_correct_answer %>
+---> Correct answer!<br>
+<% else %>
+<%
+your_answer = nil
+question[:wrong_answers].each do |answer|
+if Zlib::crc32(answer).to_s == session["#{quiz_code}-#{index}"]
+your_answer = answer
+break
+end
+end
+%>
+Wrong answer<br>
+Your answer was: <%= your_answer %><br>
+session: <%= session["#{quiz_code}-#{index}"] %><br>
+correct_answer <%= Zlib::crc32(question[:correct_answer]) %><br>
+<% end %>
+<br><br>
+<% end %>
+</div>
